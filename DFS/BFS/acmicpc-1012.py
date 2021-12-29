@@ -12,7 +12,7 @@ def DFS(x, y):
     dx = [1,-1,0,0]
     dy = [0, 0,1,-1]
     if visited[x][y] == 1:
-        visited[x][y]=0
+        visited[x][y]=0 
         for i in range(4):
             target_x = x+dx[i]
             target_y = y+dy[i]

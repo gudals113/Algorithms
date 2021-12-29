@@ -1,4 +1,5 @@
 #acmicpc-1991.py
+#DFS/BFS 구분
 N=int(input())
 tree={}
 
