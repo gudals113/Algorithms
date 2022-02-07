@@ -1,3 +1,4 @@
+#알고리즘분석 수업 과제
 N=int(input())
 O=[0]+list(map(int, input().split()))
 E=[0]+list(map(int, input().split()))

@@ -1,4 +1,3 @@
-import sys
-input=sys.stdin.readline
+N, M = map(int, input().split())
 
-N=int(input())
+arr = list(map(int, input().split()))

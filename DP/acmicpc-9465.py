@@ -1,3 +1,4 @@
+#스티커 (DP)
 T=int(input())
 
 for _ in range(T):

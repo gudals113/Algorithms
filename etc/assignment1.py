@@ -1,3 +1,4 @@
+#알고리즘분석 수업 과제
 global A,B
 A=list(map(int, input().split()))
 B=list(map(int, input().split()))

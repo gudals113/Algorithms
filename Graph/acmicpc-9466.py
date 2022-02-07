@@ -43,8 +43,8 @@ for _ in range(T):
                 if visit[next]>0:
                     break
 
-                # print(i, current,ans)
+                
                 stack.append(current)
                 current=next
-            # print(i, current, ans, "here")
+     
     print(N-ans)

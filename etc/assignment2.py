@@ -1,3 +1,4 @@
+#알고리즘분석 수업 과제
 R=[0]+list(map(int, input().split()))
 B=[0]+list(map(int, input().split()))
 k,N=map(int, input().split())

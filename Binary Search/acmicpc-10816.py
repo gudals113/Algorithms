@@ -32,14 +32,12 @@ card = sorted(card)
 count=[1 for _ in range(N)]
 
 dic={}
-
+#해시맵에 총 몇개의 카드가 존재하는지 저장
 for c in card:
     if c in dic:
         dic[c]+=1
     else:
         dic[c]=1
-
-# print(dic)
 
 answer=[0 for _ in range(M)]
 for i in range(M):
@@ -50,7 +48,7 @@ for i in range(M):
         mid = (s+t)//2
 
         if check == card[mid]:
-            answer[i]=dic[check]
+            answer[i]=dic[check] # 해시맵에 저장된 카드의 개수 불러오기
             break
         elif check > card[mid] :
             s,t= mid,t
@@ -59,3 +57,5 @@ for i in range(M):
                 
 for i in range(M):
     print(answer[i], end=' ')
+
+
