@@ -36,10 +36,29 @@
 # print(dp[N][M])
 
 
-s = '012345'
+# s = '012345'
 
-print(s[1:])
+# print(s[1:])
+
+# print(s[:3])
+# print(s[1:3])#차이 크기만큼 리턴
+# print(s[3:1:-1])
+# s =list(s)
+# s.pop()
+# print(s)
+
+# for i in range(5,-1,-1):
+#     print(i)
+
+# print('hi')
+# for i in range(1,1):
+#     print(i)
+from cmath import log
+from math import log2
 
 
-print(s[1:3])#차이 크기만큼 리턴
-print(s[3:1:-1])
+for i in range(3,2,-1):
+    print(i)
+
+binaryNum = bin(40)
+print(binaryNum)

@@ -4,3 +4,5 @@ tree = [ [] for _ in range(N+1) ]
 for _ in range(N-1):
     parent, child, cost = map(int,input().split())
     tree[parent].append([child,cost])
+
+# dp 이용해서 풀이
