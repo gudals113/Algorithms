@@ -1,3 +1,4 @@
+#집합의 표현 (union - find)
 import sys
 sys.setrecursionlimit(10**5)
 

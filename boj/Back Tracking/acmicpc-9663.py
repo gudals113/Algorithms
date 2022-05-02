@@ -20,7 +20,6 @@ def queen(x,placed):
                 queen(x+1,placed+1)
                 visited[i], chess[x] = -1, -1
                 
-    
 def check(x, idx):   
     for i in range(N):
         if chess[i] ==-1:

@@ -1,5 +1,5 @@
 #문자열 폭발
-def check(i):
+def check():
     if len(stack) < len(bomb) : #여기서 틀렸넹
         return False
     
@@ -19,8 +19,8 @@ while True:
     
     stack.append(line[i])
     
-    if line[i] == bomb[-1]:
-        if check(i)==True:
+    if stack[-1] == bomb[-1]:
+        if check()==True:
             for _ in range(len(bomb)):
                 stack.pop()
     i+=1 
