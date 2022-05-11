@@ -19,6 +19,7 @@ def dij(start, G):
     
     while heap:
         cost, node = heappop(heap)
+        
         if visited[node]!=1:
             visited[node]=1
             

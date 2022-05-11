@@ -19,11 +19,5 @@ def solution(bridge_length, weight, truck_weights):
             truck_weights=-1 #방문표시
             q.append(i)
 
-
-            
-            
-            
-            
-    
     
     return answer

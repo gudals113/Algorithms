@@ -7,7 +7,6 @@ def solution(s):
     open=0
     made = ''
     tmp=[]
-    print(s)
     for i in range(len(s)):
         if s[i]=='{':
             open=1
@@ -39,7 +38,6 @@ def solution(s):
         
         answer.append(list(num)[0])
             
-    print(answer)
     return answer
 
 solution("{{1,2,3},{2,1},{1,2,4,3},{2}}") 
