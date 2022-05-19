@@ -1,7 +1,4 @@
 from collections import defaultdict, deque
-from shutil import move
-
-
 def solution(n, k, cmd):
     
     dict = defaultdict(list)
