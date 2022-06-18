@@ -11,7 +11,6 @@ def check(x,y,size):
             
     return True
 
-
 def isLeft():
     for i in range(10):
         for j in range(10):
@@ -19,14 +18,11 @@ def isLeft():
                 return False
     return True
 
-
 sol= 26
 tmp=0
 def DFS(x,y):
     global have,sol,tmp
-    
-    
-    
+      
     if x==9 and y>=10:
         if isLeft():
             sol = min(sol, tmp)
