@@ -5,13 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "codingtest.SWAC.swac.src.App",
+            "projectName": "Algorithms_511bb844"
+        },
+        {
             "name": "Debug Local",
             "type": "Ruby",
             "request": "launch",
-            "cwd" : "${workspaceRoot}",
+            "cwd": "${workspaceRoot}",
             "program": "${file}"
         },
-
         {
             "name": "Python: Current File",
             "type": "python",

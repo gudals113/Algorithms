@@ -11,7 +11,6 @@ sol=0
 for _ in range(K):
     cable.append(int(input()))
 
-
 def cutting(s,t):
     
     if t-s<=1:

@@ -1,7 +1,6 @@
 #다리 만들기 (MST)
 from collections import deque
 
-
 N, M = map(int, input().split())
 G=[]
 for _ in range(N):
