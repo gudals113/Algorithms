@@ -1,0 +1,86 @@
+import hashlib
+
+class Bucket:
+    def __init__(self, key,value,status):
+        self.key = key
+        self.value = value
+        self.status = status
+        
+    def set(self,key,value,status):
+        self.key = key
+        self.value = value
+        self.status = status
+        
+    def set_status(self, status):
+        self.status = status
+        
+class OpenAddress:
+    def __init__(self, size):
+        self.size = size
+        self.table = [Bucket() for _ in range(self.size)]
+    
+    def get_hash_val(self, key):
+        if isinstance(key, int):
+            return key % self.size
+        
+        # byte string으로 변환 후 해싱 -> 단방향 암호이므로 원래 문자열 복구 불가능.
+        HASHED = hashlib.sha256(str(key).encode()) 
+        
+        # byte string을 16진수 문자열로 변환 -> 정수형으로 변환
+        return int(HASHED.hexdigest(), 16) % self.size
+    
+    def reget_hash_val(self, key):
+        return (self.get_hash_val(key)+1) % self.size
+    
+    def search_node(self, key):
+        HASH_VAL = self.get_hash_val(key)
+        pointer = self.table[HASH_VAL]
+        
+        for _ in range(self.size):
+            if pointer.status == 'EMPTY':
+                break
+            
+            elif pointer.status == 'OCCUPIED' and pointer.key == key:
+                return pointer
+            
+            
+            HASH_VAL =  self.reget_hash_val(HASH_VAL)
+            pointer = self.table[HASH_VAL]
+            
+        return None
+    
+    def search(self,key):
+        pointer = self.search_node(key)
+        if pointer!=None:
+            
+            return pointer.value
+        
+        return None
+        
+    
+    def add(self,key,value):
+        
+        #이미 있다면
+        if self.search(key) is not None:
+            return False
+        
+        HASH_VAL = self.get_hash_val(key)
+        pointer = self.table[HASH_VAL]
+        
+        for _ in range(self.size):
+            if pointer.status == 'EMPTY' or pointer.status == 'DELETED':
+                self.table[HASH_VAL] = Bucket(key, value, 'OCCUPIED')
+                return True
+            
+            HASH_VAL = self.reget_hash_val(HASH_VAL)
+            pointer = self.table[HASH_VAL]
+        
+        #버킷의 크기 부족
+        return False
+    
+    def remove(self, key):
+        pointer = self.search_node(key)
+        if pointer == None:
+            return False
+        pointer.status = 'DELETED'
+        return True

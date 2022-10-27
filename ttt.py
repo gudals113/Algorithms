@@ -1,9 +1,11 @@
+from collections import defaultdict
+import math
 import requests, json
 
 ### 사전 준비 ###
 BASE_URL = "https://68ecj67379.execute-api.ap-northeast-2.amazonaws.com/api"
-# PROBLEMNUM = {"problem" : 1} # 최대 200일 , 한층 20개, 3층
-PROBLEMNUM = {"problem" : 2} # 최대 1000일, 한층 200개 ,10층
+PROBLEMNUM = {"problem" : 1} # 최대 200일 , 한층 20개, 3층
+# PROBLEMNUM = {"problem" : 2} # 최대 1000일, 한층 200개 ,10층
 
 def GET_AUTH_KEY():
     headers= { 'X-Auth-Token': '5509f2cfdccc615c8725d421afcb7164', 'Content-Type':'application/json' }
@@ -154,14 +156,22 @@ def check(need, check_in, check_out):
 today_in = [[] for _ in range(maxDay+1)]
 final_day = [[] for _ in range(maxDay+2)]
 
-r_count = 0
-no_count = 0
-yes_count = 0
 
-w_count = 0
-f_count = 0
-a_count = 0
+r_c, y_c, n_c, w_c, a_c, f_c = 0,0,0,0,0,0
 
+def plus(need,check_in, check_out, today):
+    howLong = check_out-check_in + 1
+    l = 1
+    if PROBLEM==1:
+        #방 10, 기간 1-20
+        d = need/8  # 1보다 작다.
+        l = 8/howLong
+    elif PROBLEM==2:
+        #방 50, 기간 1-100
+        d= need/45
+        l = 50/howLong
+    val = d*l
+    return val
 
 for today in range(1,maxDay+1):
     tmp_reply = []
@@ -171,60 +181,39 @@ for today in range(1,maxDay+1):
     new_requests = NewRequests()
     for id, need, check_in, check_out in new_requests:
         dday = min(today+14, check_in-1)
-        final_day[dday].append([id,need,check_in, check_out])
-        w_count+=need
         
-    
-    #마감 기한 인 것들 중, 방 많이 필요한 것 순으로 정렬
-    today_accepted=0
-    today_failed=0
-    final_day[today].sort( key = lambda x: (-x[1],x[2]) )
-    
-    print('오늘',today,new_requests, final_day[today])
-    for id, need, check_in, check_out in final_day[today]:
+        VAL = plus(need,check_in, check_out,today)
+        if VAL>1: dday = today
 
+        dday = max(dday, today)
+        final_day[dday].append([id,need,check_in, check_out, VAL])
+
+    #마감 기한 인 것들 중, 방 많이 필요한 것 순으로 정렬
+    final_day[today].sort( key = lambda x: (-x[1],x[4]) )
+    for id, need, check_in, check_out, VAL in final_day[today]:
         #방 배정 상태 확인 후 대답 어떻게 할 지 저장.
         room_start, room_end = check(need, check_in, check_out)
         
         if room_start != -1 :
             today_in[check_in].append([id, room_start, room_end])
             tmp_reply.append([id,1])
-            yes_count += 1
-            a_count += need
-            today_accepted+=need
+            
+            a_c+=need
             
         else:
             tmp_reply.append([id,0])
-            no_count+=1
-            today_failed +=need
+            
+            f_c += need
             
     for id, start_room_num, end_room_num in today_in[today]:
         tmp_simulate.append([id,start_room_num])
 
-            
     Reply(tmp_reply)
-    tomorrow, fail_count = Simulate(tmp_simulate)
-    f_count+= fail_count
-    print(tmp_simulate)
-    print(today_accepted, today_failed, fail_count)
-    
+    Simulate(tmp_simulate)
 
-
-print(r_count, yes_count, no_count, w_count, a_count, f_count)
 Score()
+print('총 요청한 방의 수, 배정한 방 수, 거절한 방의 개수', w_c, a_c,f_c)
+# print(r_count, yes_count, no_count, w_count, a_count, f_count)
 
-  
-  
-  
-# yes, no 정확하게 한다. 근데 너무 거절을 많이 함.
-    
-# new_requests = NewRequests()
-# print(new_requests)
-# day = Reply([[867284,1]])
-# print(day)
-# day, fail_count = Simulate([])
-# print(day, fail_count)
-# day = Reply([])
-# print(day)
 
 

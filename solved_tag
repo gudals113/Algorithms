@@ -1,1 +1,3 @@
-*g4..g1 & -#implementation & s#2500.. & -s@$me
+*g4..g1 & -#implementation &-math & s#1000.. & -s@$me
+
+*g4..g1 & #string & -s@$me
