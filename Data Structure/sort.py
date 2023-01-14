@@ -65,7 +65,7 @@ def quick_sort(L,s,e):
     l,r = s+1, e
     print(L)
     while l<=r :
-        #pivot 보다 큰 값을 왼쪽에서부터 찾는다.
+        #pivot 보다 큰 값을 왼쪽에서부터 찾는다.    
         while l<=e and L[l] <= L[pivot] :
             l+=1
             
@@ -82,8 +82,8 @@ def quick_sort(L,s,e):
             L[l] , L[r] = L[r], L[l]
         
     quick_sort(L, s, r-1)
-    quick_sort(L, r+1, e)https://www.daleseo.com/sort-merge/
-
+    quick_sort(L, r+1, e)
+    
 quick_sort([0,1,2,3,4,5,6,7],0,7)
 
 def merge_sort(L):

@@ -20,7 +20,7 @@ E = 1
 V = 1
 p=[-1 for _ in range(V+1)]
 G=[]
-# G 정렬 해주어야 한다.
+G.sort(key = lambda x:x[2])
 sol=0
 idx=0
 for i in range(E):
@@ -31,7 +31,6 @@ for i in range(E):
     
     if idx == V-1:
         break
-    
     
 # 2. 프림 알고리즘 O(E log V)
 import heapq

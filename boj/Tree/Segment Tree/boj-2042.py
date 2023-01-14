@@ -22,7 +22,6 @@ for node in range(leafNum-1, 0, -1 ):
 
 def sliceSum(treeNode, treeL, treeR, targetL, targetR):
 
-
     if treeR < targetL or targetR < treeL :
         return 0
     
